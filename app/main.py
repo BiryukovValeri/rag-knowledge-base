@@ -22,6 +22,16 @@ def debug_env():
         "key_length": len(os.getenv("SUPABASE_KEY") or "")
     }
 
+@app.get("/debug/env")
+def debug_env():
+    import os
+    return {
+        "SUPABASE_URL": os.getenv("SUPABASE_URL"),
+        "SUPABASE_KEY_present": bool(os.getenv("SUPABASE_KEY")),
+        "key_length": len(os.getenv("SUPABASE_KEY") or ""),
+    }
+
+
 @app.get("/health")
 def health():
     return {"status": "ok"}
