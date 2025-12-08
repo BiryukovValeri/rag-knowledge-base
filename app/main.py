@@ -16,20 +16,30 @@ templates = Jinja2Templates(directory="app/templates")
 @app.get("/debug/env")
 def debug_env():
     import os
-    return {
-        "SUPABASE_URL": os.getenv("SUPABASE_URL"),
-        "SUPABASE_KEY_present": bool(os.getenv("SUPABASE_KEY")),
-        "key_length": len(os.getenv("SUPABASE_KEY") or "")
-    }
+    from fastapi.responses import JSONResponse
 
-@app.get("/debug/env")
-def debug_env():
-    import os
-    return {
-        "SUPABASE_URL": os.getenv("SUPABASE_URL"),
-        "SUPABASE_KEY_present": bool(os.getenv("SUPABASE_KEY")),
-        "key_length": len(os.getenv("SUPABASE_KEY") or ""),
-    }
+    keys = [
+        "SUPABASE_URL",
+        "SUPABASE_KEY",
+        "SUPABASE_SERVICE_KEY",
+        "SUPABASE_ANON_KEY",
+        "DATABASE_URL",
+        "OPENAI_API_KEY",
+        "LLM_API_KEY",
+        "EMBEDDINGS_API_KEY",
+        "TELEGRAM_BOT_TOKEN",
+        "RAG_URL",
+    ]
+
+    info = {}
+    for k in keys:
+        v = os.getenv(k)
+        info[k] = {
+            "present": bool(v),
+            "length": len(v) if v else 0,
+        }
+
+    return JSONResponse(info)
 
 
 @app.get("/health")
