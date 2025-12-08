@@ -3,20 +3,28 @@ from __future__ import annotations
 from typing import List, Optional, Literal, Dict
 
 from fastapi import FastAPI, Request, Form
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
+from openai import OpenAI
 
 from rag.retrieval import retrieve_top_k, get_openai_client
 from app.core.db import get_supabase_client
+from app.core.config import (
+    OPENAI_API_KEY,
+    EMBEDDINGS_API_KEY,
+    LLM_API_KEY,
+)
 
 app = FastAPI()
 templates = Jinja2Templates(directory="app/templates")
 
+
+# === DEBUG: переменные окружения ===
+
 @app.get("/debug/env")
 def debug_env():
     import os
-    from fastapi.responses import JSONResponse
 
     keys = [
         "SUPABASE_URL",
@@ -40,6 +48,79 @@ def debug_env():
         }
 
     return JSONResponse(info)
+
+
+# === DEBUG: тест эмбеддингов OpenAI ===
+
+@app.get("/debug/emb")
+async def debug_embeddings():
+    """
+    Простой тест: вызываем OpenAI embeddings напрямую.
+    Проверяем, что EMBEDDINGS_API_KEY / OPENAI_API_KEY работают и модель доступна.
+    """
+    api_key = EMBEDDINGS_API_KEY or OPENAI_API_KEY
+    if not api_key:
+        return JSONResponse(
+            {"status": "error", "error": "No EMBEDDINGS_API_KEY or OPENAI_API_KEY set"},
+            status_code=500,
+        )
+
+    try:
+        client = OpenAI(api_key=api_key)
+        resp = client.embeddings.create(
+            model="text-embedding-3-small",
+            input="Test embedding for RAG",
+        )
+        emb = resp.data[0].embedding
+        return {
+            "status": "ok",
+            "dim": len(emb),
+            "sample": emb[:8],
+        }
+    except Exception as e:
+        return JSONResponse(
+            {"status": "error", "error": str(e)},
+            status_code=500,
+        )
+
+
+# === DEBUG: тест LLM OpenAI ===
+
+@app.get("/debug/llm")
+async def debug_llm():
+    """
+    Простой тест: вызываем чат-модель OpenAI напрямую.
+    Проверяем, что LLM_API_KEY / OPENAI_API_KEY работают.
+    """
+    api_key = LLM_API_KEY or OPENAI_API_KEY
+    if not api_key:
+        return JSONResponse(
+            {"status": "error", "error": "No LLM_API_KEY or OPENAI_API_KEY set"},
+            status_code=500,
+        )
+
+    try:
+        client = OpenAI(api_key=api_key)
+        resp = client.chat.completions.create(
+            model="gpt-4.1-mini",
+            messages=[
+                {
+                    "role": "user",
+                    "content": "Ответь одной короткой фразой: работает ли тестовый LLM-эндпоинт?",
+                }
+            ],
+            max_tokens=50,
+        )
+        answer = resp.choices[0].message.content
+        return {
+            "status": "ok",
+            "answer": answer,
+        }
+    except Exception as e:
+        return JSONResponse(
+            {"status": "error", "error": str(e)},
+            status_code=500,
+        )
 
 
 @app.get("/health")
