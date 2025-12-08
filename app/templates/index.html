@@ -1,0 +1,176 @@
+Вот полный код index.html целиком — под замену файла:
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>RAG по книгам</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 16px;
+            line-height: 1.5;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+        label {
+            font-weight: 600;
+            display: block;
+            margin-top: 12px;
+            margin-bottom: 4px;
+        }
+        textarea, input, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 6px 8px;
+            font-family: inherit;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        textarea {
+            min-height: 80px;
+        }
+        .row {
+            display: flex;
+            gap: 12px;
+        }
+        .row > div {
+            flex: 1;
+        }
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 8px;
+        }
+        .checkbox-row input[type="checkbox"] {
+            width: auto;
+        }
+        button {
+            margin-top: 16px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .answer-block, .sources-block {
+            margin-top: 24px;
+            padding: 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: #fafafa;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: inherit;
+        }
+        .source-item {
+            margin-bottom: 8px;
+        }
+        /* Блок книг */
+        .book-groups {
+            margin-top: 4px;
+        }
+        .series-block {
+            margin-top: 8px;
+        }
+        .series-title {
+            font-weight: 700;
+            margin: 4px 0;
+        }
+        .book-item {
+            font-weight: 400;
+            margin: 2px 0;
+        }
+        .book-item input[type="checkbox"] {
+            width: auto;
+            margin-right: 6px;
+        }
+    </style>
+</head>
+<body>
+    <h1>RAG по книгам</h1>
+
+    <form method="post">
+        <label for="query">Вопрос</label>
+        <textarea id="query" name="query" required>{{ query or '' }}</textarea>
+
+        <div class="row">
+            <div>
+                <label for="top_k">top_k (кол-во фрагментов)</label>
+                <input id="top_k" name="top_k" type="number" min="1" max="20" value="{{ top_k or 5 }}">
+            </div>
+            <div>
+                <label for="preload_limit">preload_limit</label>
+                <input id="preload_limit" name="preload_limit" type="number" min="10" max="10000" value="{{ preload_limit or 2000 }}">
+            </div>
+        </div>
+
+        <label>Книги (опционально, можно выбрать несколько)</label>
+        <div class="book-groups">
+            {# book_groups: [{ series_label, books: [{slug, title}, ...] }, ...] #}
+            {% for group in book_groups %}
+                <div class="series-block">
+                    <div class="series-title">{{ group.series_label }}</div>
+                    {% for book in group.books %}
+                        <label class="book-item">
+                            <input
+                                type="checkbox"
+                                name="slugs"
+                                value="{{ book.slug }}"
+                                {% if selected_slugs and (book.slug in selected_slugs) %}checked{% endif %}
+                            >
+                            {{ book.title }}
+                        </label>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <p>Если ничего не выбрано — поиск идёт по всем книгам.</p>
+
+        <label for="mode">Режим ответа</label>
+        <select id="mode" name="mode">
+            <option value="synthesis" {% if mode == 'synthesis' or not mode %}selected{% endif %}>
+                Синтез (обобщённый ответ по всем фрагментам)
+            </option>
+            <option value="extract" {% if mode == 'extract' %}selected{% endif %}>
+                Extract (максимально буквальные фрагменты)
+            </option>
+        </select>
+
+        <div class="checkbox-row">
+            <input id="include_meta" name="include_meta" type="checkbox" value="true" {% if include_meta %}checked{% endif %}>
+            <label for="include_meta" style="margin: 0; font-weight: 400;">Включать citation-мета</label>
+        </div>
+
+        <button type="submit">Спросить RAG</button>
+    </form>
+
+    {% if answer %}
+        <div class="answer-block">
+            <h2>Ответ</h2>
+            <pre>{{ answer }}</pre>
+        </div>
+    {% endif %}
+
+    {% if citations and citations|length > 0 %}
+        <div class="sources-block">
+            <h2>Источники</h2>
+            <ol>
+                {% for c in citations %}
+                    <li class="source-item">
+                        Источник {{ c.index or loop.index }}:
+                        {{ c.book_title or 'Без названия' }}
+                        (серия: {{ c.book_series or 'не указана' }}, автор: {{ c.author or 'не указан' }})
+                    </li>
+                {% endfor %}
+            </ol>
+        </div>
+    {% endif %}
+</body>
+</html>

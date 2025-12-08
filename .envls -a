@@ -1,0 +1,4 @@
+DATABASE_URL=" postgresql://postgres:Olga89037156027@db.opdtfltfrufzvmnchfxe.supabase.co:5432/postgres "
+EMBEDDINGS_API_KEY=""
+LLM_API_KEY=""
+

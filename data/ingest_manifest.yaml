@@ -1,0 +1,275 @@
+documents:
+- id: kniga-1
+  file: data/raw/Книга 1 Стратегический интеллект Стратегические инструменты.docx
+  slug: kniga-1-strategicheskiy-intellekt
+  title: Книга 1. Стратегический интеллект. Стратегические инструменты.
+  subtitle: 100 стратегических моделей и инструментов для C-Level
+  series: Интеллекты
+  version: 1
+  language: ru
+  doc_type: book
+  status: active
+  tags:
+  - intellects
+  - book
+- id: kniga-2
+  file: data/raw/Книга 2 Операционный интеллект Тактические и оперативные инструменты.docx
+  slug: kniga-2-operatsionnyy-intellekt
+  title: Книга 2. Операционный интеллект. Тактические и оперативные инструменты.
+  subtitle: ''
+  series: Интеллекты
+  version: 1
+  language: ru
+  doc_type: book
+  status: active
+  tags:
+  - intellects
+  - book
+- id: kniga-3
+  file: data/raw/Книга 3 Искусственный интеллект Синтез мышления и действий через
+    ИИ.docx
+  slug: kniga-3-iskusstvennyy-intellekt
+  title: Книга 3. Искусственный интеллект. Синтез мышления и действий через ИИ.
+  subtitle: ''
+  series: Интеллекты
+  version: 1
+  language: ru
+  doc_type: book
+  status: active
+  tags:
+  - intellects
+  - book
+- id: kniga-4
+  file: data/raw/Книга 4 Организационный интеллект Архитектура устойчивости.docx
+  slug: kniga-4-organizatsionnyy-intellekt
+  title: Книга 4. Организационный интеллект. Архитектура устойчивости.
+  subtitle: ''
+  series: Интеллекты
+  version: 1
+  language: ru
+  doc_type: book
+  status: active
+  tags:
+  - intellects
+  - book
+- id: kniga-5
+  file: data/raw/Книга 5 Лидерский интеллект. Как изменить компанию — и не сгореть.docx
+  slug: kniga-5-liderskiy-intellekt
+  title: Книга 5. Лидерский интеллект. Как изменить компанию — и не сгореть.
+  subtitle: ''
+  series: Интеллекты
+  version: 1
+  language: ru
+  doc_type: book
+  status: active
+  tags:
+  - intellects
+  - book
+- id: kniga-6
+  file: data/raw/Книга 6 Финансовый интеллект. Оборона ликвидности и превращение
+    в преимущество.docx
+  slug: kniga-6-finansovyy-intellekt
+  title: Книга 6. Финансовый интеллект. Оборона ликвидности и превращение в преимущество.
+  subtitle: ''
+  series: Интеллекты
+  version: 1
+  language: ru
+  doc_type: book
+  status: active
+  tags:
+  - intellects
+  - book
+- id: kniga-7
+  file: data/raw/Книга 7 Клиентский интеллект. Механизмы удержания и вдохновения.docx
+  slug: kniga-7-klientskiy-intellekt
+  title: Книга 7. Клиентский интеллект. Механизмы удержания и вдохновения.
+  subtitle: ''
+  series: Интеллекты
+  version: 1
+  language: ru
+  doc_type: book
+  status: active
+  tags:
+  - intellects
+  - book
+- id: formula-t1
+  file: data/raw/Формула Управления Точка расчёта Том 1 Маркетплейсы.docx
+  slug: tom-1-marketpleysy
+  title: Формула Управления. Точка расчёта. Том 1. Маркетплейсы.
+  subtitle: ''
+  series: Формула Управления. Точка расчёта
+  version: 1
+  language: ru
+  doc_type: book
+  status: active
+  tags:
+  - formula
+  - book
+- id: formula-t2
+  file: data/raw/Формула Управления Точка расчёта Том 2 Финансы и PL.docx
+  slug: tom-2-finansy-pl
+  title: Формула Управления. Точка расчёта. Том 2. Финансы и P&L.
+  subtitle: ''
+  series: Формула Управления. Точка расчёта
+  version: 1
+  language: ru
+  doc_type: book
+  status: active
+  tags:
+  - formula
+  - book
+- id: formula-t3
+  file: data/raw/Формула Управления Точка расчёта Том 3 Продажи и Ассортимент.docx
+  slug: tom-3-prodazhi-assortiment
+  title: Формула Управления. Точка расчёта. Том 3. Продажи и ассортимент.
+  subtitle: ''
+  series: Формула Управления. Точка расчёта
+  version: 1
+  language: ru
+  doc_type: book
+  status: active
+  tags:
+  - formula
+  - book
+- id: formula-t4
+  file: data/raw/Формула Управления Точка расчёта Том 4 Производство и Логистика.docx
+  slug: tom-4-proizvodstvo-logistika
+  title: Формула Управления. Точка расчёта. Том 4. Производство и логистика.
+  subtitle: ''
+  series: Формула Управления. Точка расчёта
+  version: 1
+  language: ru
+  doc_type: book
+  status: active
+  tags:
+  - formula
+  - book
+- id: intlx-001
+  file: data/raw/001 Пятикратно точный Методика оценки руководителей.docx
+  slug: pyatikratno-tochnyy-metodika-otsenki-rukovoditeley
+  title: 'Пятикратно точный: Методика оценки руководителей'
+  subtitle: ''
+  series: IntlX
+  version: 1
+  language: ru
+  doc_type: book
+  status: active
+  tags:
+  - intlx
+  - book
+- id: intlx-002
+  file: data/raw/002 Твёрже стали,   тоньше льда- переговоры как система превосходства.docx
+  slug: tverzhe-stali-tonshe-lda-peregovory
+  title: 'Тверже стали, тоньше льда: переговоры как система превосходства'
+  subtitle: ''
+  series: IntlX
+  version: 1
+  language: ru
+  doc_type: book
+  status: active
+  tags:
+  - intlx
+  - book
+- id: intlx-003
+  file: data/raw/003 AI-First. Трансформация без иллюзий.docx
+  slug: ai-first-transformatsiya-bez-illyuziy
+  title: AI-first. Трансформация без иллюзий
+  subtitle: ''
+  series: IntlX
+  version: 1
+  language: ru
+  doc_type: book
+  status: active
+  tags:
+  - intlx
+  - book
+- id: intlx-004
+  file: data/raw/004 Компания-Оркестр. Директора как инструмент синхронизации людей,
+    данных, смысла.docx
+  slug: kompaniya-orkestr-direktora-kak-instrument-sinkhronizatsii
+  title: Компания-Оркестр. Директора как инструмент синхронизации людей, данных, смысла
+  subtitle: ''
+  series: IntlX
+  version: 1
+  language: ru
+  doc_type: book
+  status: active
+  tags:
+  - intlx
+  - book
+- id: intlx-005
+  file: data/raw/005 Омниканальные продажи от боли к прибыли.docx
+  slug: omnikanalnye-prodazhi-ot-boli-k-pribyli
+  title: 'Омниканальные продажи: от боли к прибыли'
+  subtitle: ''
+  series: IntlX
+  version: 1
+  language: ru
+  doc_type: book
+  status: active
+  tags:
+  - intlx
+  - book
+- id: intlx-006
+  file: 'data/raw/006 Шоки-2026- 48 часов : 30 дней : Food : Non Food.docx'
+  slug: shoki-2026-48-chasov-30-dney-food-non-food
+  title: 'Шоки-2026: 48 часов / 30 дней / Food / Non Food'
+  subtitle: ''
+  series: IntlX
+  version: 1
+  language: ru
+  doc_type: book
+  status: active
+  tags:
+  - intlx
+  - book
+- id: intlx-007
+  file: data/raw/007 Племенной Маркетинг.docx
+  slug: plemennoy-marketing
+  title: Племенной маркетинг
+  subtitle: ''
+  series: IntlX
+  version: 1
+  language: ru
+  doc_type: book
+  status: active
+  tags:
+  - intlx
+  - book
+- id: wb-001
+  file: data/raw/001-1 Пятикратно точный Методика оценки руководителей Рабочая тетрадь.docx
+  slug: pyatikratno-tochnyy-workbook
+  title: 'Пятикратно точный: Методика оценки руководителей. Рабочая тетрадь'
+  subtitle: ''
+  series: IntlX
+  version: 1
+  language: ru
+  doc_type: workbook
+  status: active
+  tags:
+  - intlx
+  - workbook
+- id: wb-007
+  file: data/raw/007-1 Племенной Маркетинг Рабочая тетрадь.docx
+  slug: plemennoy-marketing-workbook
+  title: Племенной маркетинг. Рабочая тетрадь
+  subtitle: ''
+  series: IntlX
+  version: 1
+  language: ru
+  doc_type: workbook
+  status: active
+  tags:
+  - intlx
+  - workbook
+- id: "test-sub-plan-system"
+  file: "data/raw/test_sub/Моя система планирования. Как успевать много, соблюдать баланс и ложиться спать с чистой совестью.docx"
+  slug: "test-sub-plan-system"
+  title: "Моя система планирования. Как успевать много, соблюдать баланс и ложиться спать с чистой совестью"
+  subtitle: null
+  series: "misc"
+  version: 1
+  language: "ru"
+  doc_type: "book"
+  status: "active"
+  tags: ["planning"]
