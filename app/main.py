@@ -13,6 +13,14 @@ from app.core.db import get_supabase_client
 app = FastAPI()
 templates = Jinja2Templates(directory="app/templates")
 
+@app.get("/debug/env")
+def debug_env():
+    import os
+    return {
+        "SUPABASE_URL": os.getenv("SUPABASE_URL"),
+        "SUPABASE_KEY_present": bool(os.getenv("SUPABASE_KEY")),
+        "key_length": len(os.getenv("SUPABASE_KEY") or "")
+    }
 
 @app.get("/health")
 def health():
